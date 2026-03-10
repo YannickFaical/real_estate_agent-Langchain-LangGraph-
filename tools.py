@@ -93,3 +93,35 @@ def get_user_preferences() -> str:
         f"Batiment préféré: {user_preferences['preferred_building']}\n"
         f"Budget maximum: {user_preferences['max_budget']} MAD\n"
     )
+
+@tool
+def create_reservation(apartment_id: str) -> str:
+    """Crée une réservation sur un appartement. Utiliser seulement si l'utilisateur demande explicitement une réservation."""
+    return f"Réservation simulée créée pour l'appartement {apartment_id}."
+
+@tool
+def list_occupied_apartments() -> str:
+    """Retourne la liste de tous les appartements occupés."""
+    occupied = []
+    for a in apartments:
+        if a["tenant"]:
+            occupied.append(f'{a["id"]}: {a["tenant"]}')
+    
+    if not occupied:
+        return "Aucun appartement occupé trouvé."
+    
+    return "\n".join(occupied)
+
+@tool
+def list_apartments_by_city(city: str) -> str:
+    """Retourne la liste de tous les appartements dans une ville."""
+    apartments_by_city = []
+    for a in apartments:
+        if a["city"] == city:
+            apartments_by_city.append(f'{a["id"]}: {a["building"]} | pièces: {a["rooms"]} | loyer: {a["rent"]} MAD')
+    
+    if not apartments_by_city:
+        return f"Aucun appartement trouvé dans {city}."
+    
+    return "\n".join(apartments_by_city)
+

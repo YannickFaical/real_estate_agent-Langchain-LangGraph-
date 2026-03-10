@@ -18,6 +18,8 @@ from tools import (
     list_all_tenants,
     get_user_preferences,
     create_reservation,
+    list_occupied_apartments,
+    list_apartments_by_city,
 )
 
 load_dotenv()
@@ -32,6 +34,8 @@ tools = [
     list_all_tenants,
     get_user_preferences,
     create_reservation,
+    list_occupied_apartments,
+    list_apartments_by_city,
 ]
 
 tools_by_name = {tool.name: tool for tool in tools}
