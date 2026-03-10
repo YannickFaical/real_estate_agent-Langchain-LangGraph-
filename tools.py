@@ -1,5 +1,5 @@
 from langchain.tools import tool
-from data import apartments
+from data import apartments, user_preferences
 
 
 @tool
@@ -69,3 +69,27 @@ def calculate_total_rent(apartment_ids: str) -> str:
     total = sum(a["rent"] for a in selected)
     details = ", ".join(f'{a["id"]}: {a["rent"]} MAD' for a in selected)
     return f"Total = {total} MAD ({details})"
+
+
+@tool
+def list_all_tenants() -> str:
+    """Retourne la liste de tous les occupants avec leur appartement."""
+    tenants = []
+    for a in apartments:
+        if a["tenant"]:
+            tenants.append(f'{a["id"]}: {a["tenant"]}')
+        else:
+            tenants.append(f'{a["id"]}: Aucun occupant')
+    
+    if not tenants:
+        return "Aucun occupant trouvé."
+    
+    return "\n".join(tenants)
+
+@tool
+def get_user_preferences() -> str:
+    """Retourne les préférences de l'utilisateur."""
+    return (
+        f"Batiment préféré: {user_preferences['preferred_building']}\n"
+        f"Budget maximum: {user_preferences['max_budget']} MAD\n"
+    )

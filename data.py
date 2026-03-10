@@ -32,3 +32,8 @@ apartments = [
         "tenant": "Mme Coumaré"
     }
 ]
+
+user_preferences = {
+    "preferred_building": "Panorama",
+    "max_budget": 3000
+}

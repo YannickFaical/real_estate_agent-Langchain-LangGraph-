@@ -15,6 +15,8 @@ from tools import (
     get_apartment_details,
     search_apartments,
     calculate_total_rent,
+    list_all_tenants,
+    get_user_preferences,
 )
 
 load_dotenv()
@@ -26,6 +28,8 @@ tools = [
     get_apartment_details,
     search_apartments,
     calculate_total_rent,
+    list_all_tenants,
+    get_user_preferences,
 ]
 
 tools_by_name = {tool.name: tool for tool in tools}
