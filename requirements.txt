@@ -1,0 +1,10 @@
+# Pour la version complète avec LangChain (requiert Microsoft Visual C++ Build Tools):
+# langchain
+# langchain-openai
+# langgraph
+# python-dotenv
+
+# Pour la version simplifiée (aucune dépendance requise):
+# python-dotenv (déjà installé)
+
+# Utilisez simple_app.py pour une version sans dépendances
