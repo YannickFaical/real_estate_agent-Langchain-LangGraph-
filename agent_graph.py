@@ -17,6 +17,7 @@ from tools import (
     calculate_total_rent,
     list_all_tenants,
     get_user_preferences,
+    create_reservation,
 )
 
 load_dotenv()
@@ -30,6 +31,7 @@ tools = [
     calculate_total_rent,
     list_all_tenants,
     get_user_preferences,
+    create_reservation,
 ]
 
 tools_by_name = {tool.name: tool for tool in tools}
@@ -42,7 +44,16 @@ class AgentState(TypedDict):
 
 
 def assistant_node(state: AgentState):
-    response = llm_with_tools.invoke(state["messages"])
+    system = SystemMessage(content="""
+Tu es un assistant immobilier fiable.
+Règles :
+- Utilise les outils quand la question demande une donnée réelle.
+- N'invente jamais un appartement.
+- Si une information manque, dis-le clairement.
+- Réponds en français.
+- Sois clair et professionnel.
+""")
+    response = llm_with_tools.invoke([system] + state["messages"])
     return {"messages": [response]}
 
 
